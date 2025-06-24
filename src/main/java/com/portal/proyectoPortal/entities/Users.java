@@ -13,11 +13,17 @@ public class Users {
     @Column(name="id_user")
     private Integer idUser;
 
+
     private String nameUser;
 
-    @Column(unique = true)
+    @Column(unique = true, name = "email_user")
     private String emailUser;
+    @Column(name = "password_user")
     private String passwordUser;
+
+    @Transient
+    private boolean admin;  // esto es para manejar si es admin o user. añadimos @Transient para decir que no es una columna en la bd
+
 
 
     @ManyToMany
@@ -29,15 +35,13 @@ public class Users {
     )
     private List<Roles> roles;
 
-
-
     public Users() {
 
     }
 
     public Users(int idUser, String nameUser, String emailUser, String passwordUser) {
         this.idUser = idUser;
-        this.nameUser = nameUser;
+        this.nameUser = nameUser; //
         this.emailUser = emailUser;
         this.passwordUser = passwordUser;
     }
@@ -76,9 +80,24 @@ public class Users {
         this.passwordUser = passwordUser;
     }
 
+    public boolean isAdmin() {
+        return admin;
+    }
+
+    public void setAdmin(boolean admin) {
+        this.admin = admin;
+    }
+
+    public List<Roles> getRoles() {
+        return roles;
+    }
+
+    public void setRoles(List<Roles> roles) {
+        this.roles = roles;
+    }
 
     public String toString(){
-        return "Id: " + idUser + ", nombre de usuario: " + nameUser + ", email: " + emailUser +
+        return "Id: " + idUser + ", nombre de usuario: " + " nameUser: " + ", email: " + emailUser +
                 ", password: " + passwordUser;
     }
 }
