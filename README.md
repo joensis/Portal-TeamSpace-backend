@@ -2,11 +2,10 @@
 
 ### Portal colaborativo - backend
 
-##### Este es el backend de **TeamSpace**, una aplicación colaborativa basada en espacios de trabajo. Desarrollado con **Spring Boot**, este proyecto me está sirviendo como base para aprender e integrar progresivamente tecnologías del ecosistema Java.
+##### Este es el backend de **TeamSpace**, una aplicación colaborativa basada en espacios de trabajo. Desarrollado con **Spring Boot**, este proyecto me está sirviendo como base para aprender tecnologías Java.
 
 ######   Objetivos del proyecto.
 - Aprender Spring Boot paso a paso.
-- Explorar la arquitectura RESTful.
 - Implementar seguridad con JWT mediante Spring Security.
 - Gestionar persistencia de datos con JPA/Hibernate.
 
