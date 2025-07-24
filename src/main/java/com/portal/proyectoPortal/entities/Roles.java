@@ -33,7 +33,6 @@ public class Roles {
     public int getIdRoles() {
         return idRoles;
     }
-
     public void setIdRoles(int idRoles) {
         this.idRoles = idRoles;
     }

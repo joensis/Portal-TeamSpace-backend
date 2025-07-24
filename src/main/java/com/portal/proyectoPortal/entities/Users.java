@@ -51,7 +51,6 @@ public class Users {
     public int getIdUser() {
         return idUser;
     }
-
     public void setIdUser(int idUser) {
         this.idUser = idUser;
     }
@@ -59,7 +58,6 @@ public class Users {
     public String getNameUser() {
         return nameUser;
     }
-
     public void setNameUser(String nameUser) {
         this.nameUser = nameUser;
     }
@@ -67,7 +65,6 @@ public class Users {
     public String getEmailUser() {
         return emailUser;
     }
-
     public void setEmailUser(String emailUser) {
         this.emailUser = emailUser;
     }
@@ -75,7 +72,6 @@ public class Users {
     public String getPasswordUser() {
         return passwordUser;
     }
-
     public void setPasswordUser(String passwordUser) {
         this.passwordUser = passwordUser;
     }
@@ -83,7 +79,6 @@ public class Users {
     public boolean isAdmin() {
         return admin;
     }
-
     public void setAdmin(boolean admin) {
         this.admin = admin;
     }
