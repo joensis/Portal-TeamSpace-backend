@@ -8,6 +8,7 @@ import java.util.stream.Collectors;
 public class UserDTO {
 
     private Integer idUser;
+    private String passwordUser;
     private String nameUser;
     private String emailUser;
     private List<String> roles;
@@ -19,6 +20,7 @@ public class UserDTO {
         this.idUser = users.getIdUser();
         this.nameUser = users.getNameUser();
         this.emailUser = users.getEmailUser();
+        this.passwordUser = users.getPasswordUser();
         this.roles = users.getRoles().stream().map(role -> role.getName()).collect(Collectors.toList()); // lo transformamos en un stream (otra lista)
     }
 
@@ -46,6 +48,13 @@ public class UserDTO {
         this.emailUser = emailUser;
     }
 
+    public String getPasswordUser() {
+        return passwordUser;
+    }
+
+    public void setPasswordUser(String passwordUser) {
+        this.passwordUser = passwordUser;
+    }
 
     public List<String> getRoles() {
         return roles;

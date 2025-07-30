@@ -1,5 +1,8 @@
 package com.portal.proyectoPortal.controllers;
 
+import com.portal.proyectoPortal.DTOs.LoginRequestDTO;
+import com.portal.proyectoPortal.DTOs.LoginResponseDTO;
+import com.portal.proyectoPortal.DTOs.UserDTO;
 import com.portal.proyectoPortal.entities.Users;
 import com.portal.proyectoPortal.repositories.UserRepository;
 import com.portal.proyectoPortal.services.UserServices;
@@ -23,8 +26,8 @@ public class UserControler {
 
     //CREAR USUARIO
     @PostMapping("/register")
-    private Map<String, Object> addUsers(@RequestBody Users user) {
-        userService.registerUsers(user);
+    private Map<String, Object> addUsers(@RequestBody UserDTO userDTO) {
+        userService.registerUsers(userDTO);
         Map<String, Object> response = new HashMap<>();
         response.put("message", "Usuario creado correctamente");
         return response;
@@ -32,20 +35,10 @@ public class UserControler {
 
     //HACER LOGIN
     @PostMapping("/login")
-    private Map<String, Object> login(@RequestBody Map<String, String> loginData){
+    private LoginResponseDTO login(@RequestBody LoginRequestDTO loginRequestDTO){
 
-        String email = loginData.get("email");
-        String password = loginData.get("password");
 
-        Users user = userService.login(email, password);
 
-        Map<String, Object> response = new HashMap<>();
-        if(user != null){
-            response.put("message", "Login correcto");
-            response.put("user", user);
-        }else{
-            response.put("message", "Credenciales incorrectas");
-        }
-        return response; 
+        return userService.login(loginRequestDTO);
     }
 }
