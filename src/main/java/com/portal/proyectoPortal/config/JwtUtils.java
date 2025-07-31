@@ -9,7 +9,7 @@ import java.util.Date;
 @Component
 public class JwtUtils {
 
-    private final String jwtSecret = "clave";
+    private final String jwtSecret = "nbsjhfjsfs77432ub57wrhg2385h534fgtre";
     private final long jwtExpiration = 86400000; // 1 dia
 
     public String generateToken(String email){
