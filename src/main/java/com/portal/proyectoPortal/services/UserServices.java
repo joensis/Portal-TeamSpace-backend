@@ -8,6 +8,7 @@ import com.portal.proyectoPortal.entities.Users;
 import com.portal.proyectoPortal.repositories.RoleRespository;
 import com.portal.proyectoPortal.repositories.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -16,6 +17,8 @@ import java.util.Optional;
 @Service
 public class UserServices {
 
+    @Autowired
+    private PasswordEncoder passwordEncoder;
 
     @Autowired
     private UserRepository userRepository;
@@ -45,12 +48,18 @@ public class UserServices {
 
     // PARA CREAR USUARIO    //
     public UserDTO registerUsers (UserDTO userDTO){
+
+
         Roles defaultRole = roleRespository.findByName("ROLE_USER");  //OBTENEMOS EL ROLE_USER DE LA TABLE ROLES, PORQUE VA A SER EL PREDEFINIDO CUANDO SE CREE UN USUARIO
 
         //TRANSFORMAMOS EL DTO EN ENTIDAD USER, QUE ES LA QUE MANDAMOS A LA BASE
         Users user = new Users();
         user.setNameUser(userDTO.getNameUser());
         user.setEmailUser(userDTO.getEmailUser());
+        // ENCRIPTAMOS LA CONTRASEÑA
+        String hashPassword = passwordEncoder.encode(userDTO.getPasswordUser());
+        user.setPasswordUser(hashPassword);
+
         user.setPasswordUser(userDTO.getPasswordUser());
         user.setRoles(List.of(defaultRole));
 
