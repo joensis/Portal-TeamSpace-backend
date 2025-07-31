@@ -3,6 +3,7 @@ package com.portal.proyectoPortal.services;
 import com.portal.proyectoPortal.DTOs.LoginRequestDTO;
 import com.portal.proyectoPortal.DTOs.LoginResponseDTO;
 import com.portal.proyectoPortal.DTOs.UserDTO;
+import com.portal.proyectoPortal.config.JwtUtils;
 import com.portal.proyectoPortal.entities.Roles;
 import com.portal.proyectoPortal.entities.Users;
 import com.portal.proyectoPortal.repositories.RoleRespository;
@@ -16,6 +17,9 @@ import java.util.Optional;
 
 @Service
 public class UserServices {
+
+    @Autowired
+    private JwtUtils jwtUtils;
 
     @Autowired
     private PasswordEncoder passwordEncoder;
@@ -33,9 +37,9 @@ public class UserServices {
         if (optionalUser.isPresent()){
             Users user = optionalUser.get();
 
-            if (user.getPasswordUser().equals(loginRequest.getPasswordUser())){  //cambiar esto por la encriptacion de la contraseña
+            if (passwordEncoder.matches(loginRequest.getPasswordUser(), user.getPasswordUser())){
                 UserDTO userDTO = new UserDTO(user);
-                String token = "mock-token"; // aqui debemos generar el token
+                String token = jwtUtils.generateToken(user.getEmailUser());
                 return new LoginResponseDTO(token, userDTO);
             }else{
                 throw new RuntimeException("Contraseña incorrecta");
